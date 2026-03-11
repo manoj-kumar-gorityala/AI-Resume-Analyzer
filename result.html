@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results | AI Resume Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1><i class="fa-solid fa-chart-pie" style="color: #00f2ff;"></i> Analysis Complete</h1>
+
+        <div class="grid">
+            <div class="card highlight-card">
+                <h2><i class="fa-solid fa-user-tie"></i> Predicted Role</h2>
+                <p class="role">{{role}}</p>
+            </div>
+
+            <div class="card highlight-card">
+                <h2><i class="fa-solid fa-gauge-high"></i> ATS Score</h2>
+                <div class="progress">
+                    <div class="progress-fill" style="width: {{score}}%">
+                        {{score}}%
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full">
+                <h2><i class="fa-solid fa-check-double"></i> Skills Identified</h2>
+                <div class="skills">
+                    {% for skill in skills %}
+                        <span class="skill"><i class="fa-solid fa-check"></i> {{skill}}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="card alert-card">
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> Missing Skills</h2>
+                <ul class="custom-list">
+                    {% for skill in missing %}
+                        <li>{{skill}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fa-solid fa-briefcase"></i> Recommended Jobs</h2>
+                <ul class="custom-list">
+                    {% for job in jobs %}
+                        <li>{{job}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="card full">
+                <h2><i class="fa-solid fa-lightbulb"></i> AI Suggestions to Improve</h2>
+                <ul class="custom-list suggestions">
+                    {% for tip in tips %}
+                        <li>{{tip}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="card full chart-container">
+                <h2><i class="fa-solid fa-chart-doughnut"></i> Score Breakdown</h2>
+                <div style="width: 250px; margin: 0 auto;">
+                    <canvas id="scoreChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="back">
+            <a href="/" class="btn-secondary"><i class="fa-solid fa-arrow-left"></i> Analyze Another Resume</a>
+        </div>
+    </div>
+
+    <script>
+        // Customizing the chart to match the dark theme
+        Chart.defaults.color = '#fff';
+        new Chart(document.getElementById("scoreChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Matched", "Gap"],
+                datasets: [{
+                    data: [{{score}}, 100-{{score}}],
+                    backgroundColor: ["#00f2ff", "rgba(255, 255, 255, 0.1)"],
+                    borderColor: ["#00f2ff", "transparent"],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                cutout: '75%',
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

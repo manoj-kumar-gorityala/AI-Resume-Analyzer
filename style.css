@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary: #00f2ff;
+    --primary-hover: #4facfe;
+    --bg-dark: #0f172a;
+    --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+.dashboard {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 38px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 10px;
+    color: var(--primary);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+/* Grid & Cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 242, 255, 0.1);
+    border-color: rgba(0, 242, 255, 0.3);
+}
+
+.full {
+    grid-column: span 2;
+}
+
+.highlight-card {
+    text-align: center;
+}
+
+/* Typography specifics */
+.role {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 10px 0;
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.4);
+}
+
+/* Progress Bar */
+.progress {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: 15px;
+    height: 25px;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.progress-fill {
+    background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+    height: 100%;
+    text-align: right;
+    padding-right: 15px;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+}
+
+/* Skills Tags */
+.skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    background: rgba(0, 242, 255, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.skill:hover {
+    background: var(--primary);
+    color: #000;
+}
+
+/* Lists */
+.custom-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.custom-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    padding-left: 25px;
+}
+
+.custom-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}
+
+.alert-card .custom-list li::before {
+    content: "×";
+    color: #ff4757;
+    font-weight: bold;
+}
+
+/* Custom File Upload */
+.upload-card {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.file-upload-wrapper {
+    position: relative;
+    border: 2px dashed var(--card-border);
+    border-radius: 15px;
+    padding: 50px 20px;
+    background: rgba(0,0,0,0.2);
+    transition: 0.3s;
+    margin-bottom: 25px;
+}
+
+.file-upload-wrapper:hover {
+    border-color: var(--primary);
+    background: rgba(0, 242, 255, 0.05);
+}
+
+.file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.file-label i {
+    font-size: 48px;
+    color: var(--primary);
+}
+
+/* Buttons */
+button, .btn-secondary {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+    color: #000;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.3);
+}
+
+button:hover, .btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 242, 255, 0.5);
+}
+
+.back {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .full {
+        grid-column: span 1;
+    }
+    h1 {
+        font-size: 28px;
+    }
+}

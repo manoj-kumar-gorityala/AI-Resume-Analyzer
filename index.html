@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard">
+        <h1><i class="fa-solid fa-robot" style="color: #00f2ff;"></i> AI Resume Analyzer</h1>
+        <p class="subtitle">Upload your resume to get instant ATS scoring and AI-driven feedback.</p>
+
+        <div class="card full upload-card">
+            <h2>Upload Your Resume</h2>
+            
+            <form action="/analyze" method="post" enctype="multipart/form-data">
+                <div class="file-upload-wrapper">
+                    <input type="file" name="resume" id="file-upload" class="file-input" required accept=".pdf,.doc,.docx">
+                    <label for="file-upload" class="file-label">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span id="file-name">Drag & drop or click to browse (PDF, DOCX)</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Analyze Resume
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            var fileName = e.target.files[0].name;
+            document.getElementById('file-name').innerText = fileName;
+        });
+    </script>
+
+</body>
+</html>
